@@ -1,0 +1,57 @@
+[
+  {
+    "name": "bug",
+    "color": "d73a4a",
+    "description": "Confirmed bugs or reports that are very likely to be bugs"
+  },
+  {
+    "name": "question",
+    "color": "7bed9b",
+    "description": "Questions more than bug reports or feature requests (e.g. how do I do X)"
+  },
+  {
+    "name": "enhancement",
+    "color": "a2eeef",
+    "description": "Feature requests"
+  },
+  {
+    "name": "documentation",
+    "color": "0075ca",
+    "description": "Pull requests that include documentaion updates"
+  },
+  {
+    "name": "feature",
+    "color": "e5ad5e",
+    "description": "Pull requests that include new features or enhancements"
+  },
+  {
+    "name": "fix",
+    "color": "fcc2c5",
+    "description": "Pull requests that include bug fixes"
+  },
+  {
+    "name": "needs-review",
+    "color": "dbd536",
+    "description": "Pull requests which need code review and approval"
+  },
+  {
+    "name": "needs-testing",
+    "color": "c92484",
+    "description": "Pull requests which need manual testing"
+  },
+  {
+    "name": "requires-changes",
+    "color": "e8a451",
+    "description": "Pull requests which need to be updated based on review comments and then reviewed again"
+  },
+  {
+    "name": "under-review",
+    "color": "8843a5",
+    "description": "Pull requests being reviewed"
+  },
+  {
+    "name": "work-in-progress",
+    "color": "75aaea",
+    "description": "Pull requests which are still being worked on, more changes will follow"
+  }
+]
