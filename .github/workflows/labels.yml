@@ -14,15 +14,27 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Setup gcloud for secrets manager
+      - name: Setup gcloud for secret manager
         uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
         with:
           version: '276.0.0'
           service_account_key: ${{ secrets.GCP_SA_SECRETMANAGER_KEY_PROD }}
+      
+      - name: Setup gcloud beta components
+        run: gcloud components install beta
+        shell: bash
 
       - name: Export github access token
         run: |
-          echo "::set-env name=GITHUB_PAT_CALLFORCEBOT::$(echo "::add-mask::$(gcloud components install beta && gcloud beta secrets versions access latest --secret=GITHUB_PAT_CALLFORCEBOT --quiet --project=callforce-prod)")"
+          echo "::set-env name=FETCH_GITHUB_PAT_CALLFORCEBOT::gcloud beta secrets versions access latest --secret=GITHUB_PAT_CALLFORCEBOT --quiet --project=callforce-prod"
+        shell: bash
+
+      - name: Mask github access token value
+        run: echo "::add-mask::$FETCH_GITHUB_PAT_CALLFORCEBOT"
+        shell: bash
+
+      - name: Export github access token
+        run: echo "::set-env name=GITHUB_PAT_CALLFORCEBOT::$FETCH_GITHUB_PAT_CALLFORCEBOT"
         shell: bash
 
       - name: Update organization labels
@@ -30,5 +42,5 @@ jobs:
         id: org-labels
         with:
           org: callforce
-          token: ${{ secrets.GITHUB_PAT_CALLFORCEBOT }} 
+          token: ${{ env.GITHUB_PAT_CALLFORCEBOT }} 
           labels: .github/config/org-labels.json
