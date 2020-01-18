@@ -1,5 +1,5 @@
 
-# CallForce Code of Conduct
+# CallForce Code of Conduct 📜
 
 All participants in CallForce projects are expected to abide by our Code of Conduct, both online and during in-person events that are hosted and/or associated with CallForce.
 
