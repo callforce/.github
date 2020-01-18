@@ -20,20 +20,9 @@ jobs:
           version: '276.0.0'
           service_account_key: ${{ secrets.GCP_SA_SECRETMANAGER_KEY_PROD }}
 
-      - name: Export github access token and stop log commands
+      - name: Export github access token
         run: |
-          echo "::set-env name=GITHUB_PAT_CALLFORCEBOT::$(gcloud components install beta && gcloud beta secrets versions access latest --secret=GITHUB_PAT_CALLFORCEBOT --quiet --project=callforce-prod)"
-          echo "::stop-commands::pause-logging"
-        shell: bash
-
-      - name: Mask github access token
-        run: |
-          echo "::add-mask::$GITHUB_PAT_CALLFORCEBOT"
-        shell: bash
-
-      - name: Start log commands
-        run: |
-          echo ""::pause-logging::""
+          echo "::set-env name=GITHUB_PAT_CALLFORCEBOT::$(echo "::add-mask::$(gcloud components install beta && gcloud beta secrets versions access latest --secret=GITHUB_PAT_CALLFORCEBOT --quiet --project=callforce-prod)")"
         shell: bash
 
       - name: Update organization labels
