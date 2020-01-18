@@ -1,0 +1,35 @@
+
+name: Labels
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  update:
+    name: Update labels
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup gcloud for secrets manager
+        uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+        with:
+          version: '276.0.0'
+          service_account_key: ${{ secrets.GCP_SA_SECRETSMANAGER_KEY_PROD }}
+
+      - name: Export github access token
+        run: |
+          echo "::set-env name=GITHUB_PAT_CALLFORCEBOT::$(gcloud components install beta && gcloud beta secrets versions access latest --secret=GITHUB_PAT_CALLFORCEBOT --quiet --project=callforce-prod)"
+          echo "::add-mask::$GITHUB_PAT_CALLFORCEBOT"
+        shell: bash
+
+      - name: Update organization labels
+        uses: ./
+        id: org-labels
+        with:
+          org: callforce
+          token: ${{ secrets.GITHUB_PAT_CALLFORCEBOT }} 
+          labels: .github/config/org-labels.json
