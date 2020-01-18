@@ -18,7 +18,7 @@ jobs:
         uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
         with:
           version: '276.0.0'
-          service_account_key: ${{ secrets.GCP_SA_SECRETSMANAGER_KEY_PROD }}
+          service_account_key: ${{ secrets.GCP_SA_SECRETMANAGER_KEY_PROD }}
 
       - name: Export github access token
         run: |
