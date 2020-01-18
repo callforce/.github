@@ -28,7 +28,7 @@ This project and everyone participating in it is governed by the CallForce Code 
 
 ### 🌳 Branches
 
-At times, we rely on a branches name to automatically take action on a pull request, so please adhere to the following format for branch names:
+At times, we rely on a branch's name to automatically take action on a pull request, so please adhere to the following format for branch names:
 
 `<GITHUB_USERNAME>/<CHANGE_TYPE>/<ASSOCIATED_GITHUB_ISSUE_NUMBER>`
 
@@ -60,8 +60,7 @@ Please follow these steps for making contributions:
 
 #### JavaScript Style Guide
 
-* Must adhere to the [Airbnb JavaScript Style Guide][3]
-* 
+* Adhere to the [Airbnb JavaScript Style Guide][3]
 
 #### Documentation Style Guide
 
