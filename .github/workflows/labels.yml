@@ -27,7 +27,7 @@ jobs:
         shell: bash
 
       - name: Update organization labels
-        uses: ./
+        uses: ./.github/actions/org-labels
         id: org-labels
         with:
           org: callforce
