@@ -23,6 +23,10 @@ jobs:
       - name: Export github access token
         run: |
           echo "::set-env name=GITHUB_PAT_CALLFORCEBOT::$(gcloud components install beta && gcloud beta secrets versions access latest --secret=GITHUB_PAT_CALLFORCEBOT --quiet --project=callforce-prod)"
+        shell: bash
+
+      - name: Mask github access token
+        run: |
           echo "::add-mask::$GITHUB_PAT_CALLFORCEBOT"
         shell: bash
 
