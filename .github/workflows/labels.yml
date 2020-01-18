@@ -24,17 +24,17 @@ jobs:
         run: gcloud components install beta
         shell: bash
 
-      - name: Export github access token
+      - name: Export command to fetch github access token
         run: |
-          echo "::set-env name=FETCH_GITHUB_PAT_CALLFORCEBOT::gcloud beta secrets versions access latest --secret=GITHUB_PAT_CALLFORCEBOT --quiet --project=callforce-prod"
+          echo "::set-env name=CMD_FETCH_GITHUB_PAT_CALLFORCEBOT::gcloud beta secrets versions access latest --secret=GITHUB_PAT_CALLFORCEBOT --quiet --project=callforce-prod"
         shell: bash
 
-      - name: Mask github access token value
-        run: echo "::add-mask::$FETCH_GITHUB_PAT_CALLFORCEBOT"
+      - name: Mask github access token
+        run: echo "::add-mask::$CMD_FETCH_GITHUB_PAT_CALLFORCEBOT"
         shell: bash
 
       - name: Export github access token
-        run: echo "::set-env name=GITHUB_PAT_CALLFORCEBOT::$FETCH_GITHUB_PAT_CALLFORCEBOT"
+        run: echo "::set-env name=GITHUB_PAT_CALLFORCEBOT::$CMD_FETCH_GITHUB_PAT_CALLFORCEBOT"
         shell: bash
 
       - name: Update organization labels
