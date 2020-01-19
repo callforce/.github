@@ -42,5 +42,6 @@ jobs:
         id: org-labels
         with:
           org: callforce
+          repo: .github
           token: ${{ env.GITHUB_PAT_CALLFORCEBOT }} 
-          labels: .github/config/org-labels.json
+          labelsPath: config/org-labels.json
