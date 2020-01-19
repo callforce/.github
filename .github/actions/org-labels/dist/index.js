@@ -572,8 +572,10 @@ const standardizeLabels = (octokit, org, repos, labels) => {
       repos.forEach(repo => {
         promises.push(updateRepoLabels(octokit, org, repo, labels))
       })
+
+      let r = await Promise.all(promises)
       
-      resolve(Promise.all(promises))
+      resolve(r)
     } catch (err) {
       console.log(err)
       reject(err)
