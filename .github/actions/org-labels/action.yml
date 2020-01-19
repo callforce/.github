@@ -11,7 +11,7 @@ inputs:
   repo: 
     description: Metadata repo that contains the labels config
     required: true
-  labels: 
+  labelsPath: 
     description: Path to labels config json in organization metadata repo
     required: true
   token: 
