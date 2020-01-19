@@ -1,10 +1,12 @@
 
-name: Labels
+name: Organization Labels
 
 on:
   push:
     branches:
       - master
+    # paths:
+    #   - 'config/org-labels.json'
 
 jobs:
   update:
