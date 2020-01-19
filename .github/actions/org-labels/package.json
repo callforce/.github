@@ -4,13 +4,18 @@
   "description": "Maintain repository labels across a GitHub organization from GitHub actions",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "ncc build index.js"
   },
   "keywords": [],
   "author": "@callforce",
   "license": "ISC",
   "dependencies": {
     "@actions/core": "^1.2.1",
-    "@actions/github": "^2.0.1"
+    "@actions/github": "^2.0.1",
+    "@octokit/rest": "^16.37.0",
+    "lodash": "^4.17.15"
+  },
+  "devDependencies": {
+    "@zeit/ncc": "^0.21.0"
   }
 }
