@@ -499,7 +499,7 @@ module.exports = require("os");
 const _ = __webpack_require__(557)
 const core = __webpack_require__(470)
 const github = __webpack_require__(470)
-const Label = __webpack_require__(640)
+const Label = __webpack_require__(157)
 const Oktokit = __webpack_require__(0)
 
 const PROTECTED_LABELS = ['Epic']
@@ -1664,6 +1664,62 @@ function paginatePlugin(octokit) {
   octokit.paginate.iterator = iterator.bind(null, octokit);
 }
 
+
+/***/ }),
+
+/***/ 157:
+/***/ (function(module) {
+
+
+class Label {
+  constructor({ octokit }) {
+    this.octokit = octokit
+  }
+
+  async create({ owner, repo, name, color, description }) {
+    try {
+      await this.octokit.issues.createLabel({ 
+        owner, 
+        repo, 
+        name, 
+        color, 
+        description 
+      })
+      console.log(`Created ${name} label in ${repo}`)
+    } catch (err) {
+      console.log(`Failed to create ${name} label in ${repo}`)
+      console.log(err)
+    }
+  }
+
+  async delete({ owner, repo, name }) {
+    try {
+      await this.octokit.issues.deleteLabel({ owner, repo, name })
+      console.log(`Deleted ${name} label in ${repo}`)
+    } catch (err) {
+      console.log(`Failed to delete ${name} label in ${repo}`)
+      console.log(err)
+    }
+  }
+
+  async update({ owner, repo, name, color, description }) {
+    try {
+      await this.octokit.issues.updateLabel({ 
+        owner, 
+        repo, 
+        current_name: name, 
+        color, 
+        description 
+      })
+      console.log(`Updated ${name} label in ${repo}`)
+    } catch (err) {
+      console.log(`Failed to update ${name} label in ${repo}`)
+      console.log(err)
+    }
+  }
+}
+
+module.exports = Label
 
 /***/ }),
 
@@ -24520,62 +24576,6 @@ module.exports.env = opts => {
 /***/ (function(module) {
 
 module.exports = require("path");
-
-/***/ }),
-
-/***/ 640:
-/***/ (function(module) {
-
-
-class Label {
-  constructor({ octokit }) {
-    this.octokit = octokit
-  }
-
-  async create({ owner, repo, name, color, description }) {
-    try {
-      await this.octokit.issues.createLabel({ 
-        owner, 
-        repo, 
-        name, 
-        color, 
-        description 
-      })
-      console.log(`Created ${name} label in ${repo}`)
-    } catch (err) {
-      console.log(`Failed to create ${name} label in ${repo}`)
-      console.log(err)
-    }
-  }
-
-  async delete({ owner, repo, name }) {
-    try {
-      await this.octokit.issues.deleteLabel({ owner, repo, name })
-      console.log(`Deleted ${name} label in ${repo}`)
-    } catch (err) {
-      console.log(`Failed to delete ${name} label in ${repo}`)
-      console.log(err)
-    }
-  }
-
-  async update({ owner, repo, name, color, description }) {
-    try {
-      await this.octokit.issues.updateLabel({ 
-        owner, 
-        repo, 
-        current_name: name, 
-        color, 
-        description 
-      })
-      console.log(`Updated ${name} label in ${repo}`)
-    } catch (err) {
-      console.log(`Failed to update ${name} label in ${repo}`)
-      console.log(err)
-    }
-  }
-}
-
-module.exports = Label
 
 /***/ }),
 
