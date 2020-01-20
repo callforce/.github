@@ -1,7 +1,7 @@
 
 # Organization Labels Action
 
-This action standardizes labels across an organization using an org label config json file.
+This action is for maintaining labels across an organization using an org label config json file.
 
 ## Inputs
 
