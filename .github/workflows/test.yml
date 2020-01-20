@@ -1,4 +1,4 @@
-name: lint actions
+name: test
 
 on:
   pull_request:
@@ -10,8 +10,8 @@ on:
       - synchronize
 
 jobs:
-  lint:
-    name: lint local actions
+  actions:
+    name: actions
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -45,5 +45,5 @@ jobs:
         working-directory: .github/actions/${{ matrix.action }}
 
       - name: lint action
-        run: npm run lint
+        run: npm run test
         working-directory: .github/actions/${{ matrix.action }}
