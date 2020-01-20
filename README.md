@@ -1,4 +1,4 @@
-![](https://github.com/callforce/.github/workflows/Organization%20Labels/badge.svg)
+[![](https://github.com/callforce/.github/workflows/Organization%20Labels/badge.svg)](https://github.com/callforce/.github/actions?query=workflow%3A%22Organization+Labels%22)
 
 # CallForce Default Metadata
 
