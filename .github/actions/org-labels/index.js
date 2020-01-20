@@ -89,7 +89,7 @@ const main = async () => {
   try {
     const org = core.getInput('org', { required: true });
     const repo = core.getInput('repo', { required: true });
-    const token = core.setSecret('token');
+    const token = core.getInput('token', { required: true });
     const labelsPath = core.getInput('labelsPath', { required: true });
     const octokit = Oktokit({ auth: token })
 
