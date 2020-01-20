@@ -1718,7 +1718,8 @@ class Label {
         await this.octokit.issues.updateLabel({ 
           owner, 
           repo, 
-          current_name: name, 
+          name,
+          new_name: name,  
           color, 
           description 
         })
