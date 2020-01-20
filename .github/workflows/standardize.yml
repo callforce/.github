@@ -9,7 +9,7 @@ on:
 
 jobs:
   labels:
-    name: labels
+    name: standardize labels
     runs-on: ubuntu-latest
     steps:
       - name: checkout repository
