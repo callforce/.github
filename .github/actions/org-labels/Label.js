@@ -1,7 +1,7 @@
 const axios = require('axios')
 
 class Label {
-  constructor({ octokit }) {
+  constructor({ octokit, token }) {
     this.octokit = octokit
     this.token = token
     this.githubBaseUrl = 'https://api.github.com'

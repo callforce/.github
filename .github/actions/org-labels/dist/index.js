@@ -1349,7 +1349,7 @@ const updateRepoLabels = (octokit, org, repo, labels) => {
           )[label.name];
 
           promises.push(
-            orgLabel.update({ owner: org, repo: repo.name, name, color, description, token })
+            orgLabel.update({ owner: org, repo: repo.name, name, color, description })
           )
         }
       })
@@ -2629,7 +2629,7 @@ function paginatePlugin(octokit) {
 const axios = __webpack_require__(53)
 
 class Label {
-  constructor({ octokit }) {
+  constructor({ octokit, token }) {
     this.octokit = octokit
     this.token = token
     this.githubBaseUrl = 'https://api.github.com'

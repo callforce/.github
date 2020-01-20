@@ -41,7 +41,7 @@ const updateRepoLabels = (octokit, org, repo, labels) => {
           )[label.name];
 
           promises.push(
-            orgLabel.update({ owner: org, repo: repo.name, name, color, description, token })
+            orgLabel.update({ owner: org, repo: repo.name, name, color, description })
           )
         }
       })
