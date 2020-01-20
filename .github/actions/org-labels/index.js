@@ -1,7 +1,7 @@
 const _ = require('lodash')
 const core = require('@actions/core')
 const github = require('@actions/core')
-const Label = require('./Label')
+const Label = require('./util/Label')
 const Oktokit = require('@octokit/rest')
 
 const PROTECTED_LABELS = ['Epic']

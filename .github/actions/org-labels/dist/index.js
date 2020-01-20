@@ -1309,7 +1309,7 @@ module.exports = require("os");
 const _ = __webpack_require__(557)
 const core = __webpack_require__(470)
 const github = __webpack_require__(470)
-const Label = __webpack_require__(157)
+const Label = __webpack_require__(640)
 const Oktokit = __webpack_require__(0)
 
 const PROTECTED_LABELS = ['Epic']
@@ -2620,79 +2620,6 @@ function paginatePlugin(octokit) {
   octokit.paginate.iterator = iterator.bind(null, octokit);
 }
 
-
-/***/ }),
-
-/***/ 157:
-/***/ (function(module, __unusedexports, __webpack_require__) {
-
-const axios = __webpack_require__(53)
-
-class Label {
-  constructor({ octokit, token }) {
-    this.octokit = octokit
-    this.token = token
-    this.githubBaseUrl = 'https://api.github.com'
-  }
-
-  create({ owner, repo, name, color, description }) {
-    return new Promise(async (resolve, reject) => {
-      try {
-        await this.octokit.issues.createLabel({ 
-          owner, 
-          repo, 
-          name, 
-          color, 
-          description 
-        })
-        console.log(`Created ${name} label in ${repo}`)
-        resolve({ name })
-      } catch (err) {
-        console.log(`Failed to create ${name} label in ${repo}`)
-        reject(err)
-      }
-    })
-  }
-
-  delete({ owner, repo, name }) {
-    return new Promise(async (resolve, reject) => {
-      try {
-        await this.octokit.issues.deleteLabel({ owner, repo, name })
-        console.log(`Deleted ${name} label in ${repo}`)
-        resolve({ name })
-      } catch (err) {
-        console.log(`Failed to delete ${name} label in ${repo}`)
-        reject(err)
-      }
-    })
-  }
-
-  update({ owner, repo, name, color, description }) {
-    return new Promise(async (resolve, reject) => {
-      try {
-        const url = `${this.githubBaseUrl}/repos/${owner}/${repo}/labels/${name}`
-        await axios({
-          method: 'patch',
-          url, 
-          headers: { 'Authorization': `Bearer ${this.token}` },
-          data: {
-            name,
-            new_name: name,  
-            color, 
-            description 
-          }
-        })
-        console.log(`Updated ${name} label in ${repo}`)
-        resolve({ name })
-      } catch (err) {
-        console.log(`Failed to update ${name} label in ${repo}`)
-        reject(err)
-      }
-    })
-  }
-}
-
-module.exports = Label
 
 /***/ }),
 
@@ -26528,6 +26455,79 @@ module.exports = function parseHeaders(headers) {
   return parsed;
 };
 
+
+/***/ }),
+
+/***/ 640:
+/***/ (function(module, __unusedexports, __webpack_require__) {
+
+const axios = __webpack_require__(53)
+
+class Label {
+  constructor({ octokit, token }) {
+    this.octokit = octokit
+    this.token = token
+    this.githubBaseUrl = 'https://api.github.com'
+  }
+
+  create({ owner, repo, name, color, description }) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        await this.octokit.issues.createLabel({ 
+          owner, 
+          repo, 
+          name, 
+          color, 
+          description 
+        })
+        console.log(`Created ${name} label in ${repo}`)
+        resolve({ name })
+      } catch (err) {
+        console.log(`Failed to create ${name} label in ${repo}`)
+        reject(err)
+      }
+    })
+  }
+
+  delete({ owner, repo, name }) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        await this.octokit.issues.deleteLabel({ owner, repo, name })
+        console.log(`Deleted ${name} label in ${repo}`)
+        resolve({ name })
+      } catch (err) {
+        console.log(`Failed to delete ${name} label in ${repo}`)
+        reject(err)
+      }
+    })
+  }
+
+  update({ owner, repo, name, color, description }) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const url = `${this.githubBaseUrl}/repos/${owner}/${repo}/labels/${name}`
+        await axios({
+          method: 'patch',
+          url, 
+          headers: { 'Authorization': `Bearer ${this.token}` },
+          data: {
+            name,
+            new_name: name,  
+            color, 
+            description 
+          }
+        })
+        console.log(`Updated ${name} label in ${repo}`)
+        resolve({ name })
+      } catch (err) {
+        console.log(`Failed to update ${name} label in ${repo}`)
+        reject(err)
+      }
+    })
+  }
+}
+
+module.exports = Label
 
 /***/ }),
 
