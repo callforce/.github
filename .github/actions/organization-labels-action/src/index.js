@@ -10,7 +10,7 @@ const Label = require('./util/Label');
  * @type {Object[]}
  * @default
  */
-const PROTECTED_LABELS = ['Epic']
+const PROTECTED_LABELS = ['Epic'];
 
 /**
  * @function
