@@ -1416,7 +1416,7 @@ const main = async () => {
     // standardize org labels
     await standardizeLabels(octokit, org, repos, labels, token)
   } catch (err) {
-    console.log(err)
+    // console.log(err)
     core.setFailed(err.message)
   }
 }
@@ -2698,7 +2698,7 @@ class Label {
         resolve({ name })
       } catch (err) {
         console.log(`Failed to update ${name} label in ${repo}`)
-        console.log(err)
+        // console.log(err)
         reject(err)
       }
     })
