@@ -78,7 +78,7 @@ This section lists the labels we use to help us track and manage issues and pull
 |----------|-----------|
 | `enhancement` | Feature requests |
 | `bug` | Confirmed bugs or reports that are very likely to be bugs |
-| `maintenence` | Configuration or setup |
+| `maintenance` | Configuration or setup |
 | `question` | Questions more than bug reports or feature requests (e.g. how do I do X) |
 
 #### Type of Pull Request

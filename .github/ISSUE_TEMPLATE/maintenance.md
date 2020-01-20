@@ -1,8 +1,8 @@
 ---
-name: Maintenence
+name: Maintenance
 about: Submit a request for configuration or setup changes
 title: ''
-labels: maintenence
+labels: maintenance
 assignees: ''
 ---
 
