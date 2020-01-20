@@ -16,28 +16,28 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      # - name: Setup gcloud for secret manager
-      #   uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
-      #   with:
-      #     version: '276.0.0'
-      #     service_account_key: ${{ secrets.GCP_SA_SECRETMANAGER_KEY_PROD }}
+      - name: Setup gcloud for secret manager
+        uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+        with:
+          version: '276.0.0'
+          service_account_key: ${{ secrets.GCP_SA_SECRETMANAGER_KEY_PROD }}
       
-      # - name: Setup gcloud beta components
-      #   run: gcloud components install beta
-      #   shell: bash
+      - name: Setup gcloud beta components
+        run: gcloud components install beta
+        shell: bash
 
-      # - name: Export command to fetch github access token
-      #   run: |
-      #     echo "::set-env name=CMD_FETCH_GITHUB_PAT_CALLFORCEBOT::gcloud beta secrets versions access latest --secret=GITHUB_PAT_CALLFORCEBOT --quiet --project=callforce-prod"
-      #   shell: bash
+      - name: Export command to fetch github access token
+        run: |
+          echo "::set-env name=CMD_FETCH_GITHUB_PAT_CALLFORCEBOT::gcloud beta secrets versions access latest --secret=GITHUB_PAT_CALLFORCEBOT --quiet --project=callforce-prod"
+        shell: bash
 
-      # - name: Mask github access token
-      #   run: echo "::add-mask::$CMD_FETCH_GITHUB_PAT_CALLFORCEBOT"
-      #   shell: bash
+      - name: Mask github access token
+        run: echo "::add-mask::$CMD_FETCH_GITHUB_PAT_CALLFORCEBOT"
+        shell: bash
 
-      # - name: Export github access token
-      #   run: echo "::set-env name=GITHUB_PAT_CALLFORCEBOT::$CMD_FETCH_GITHUB_PAT_CALLFORCEBOT"
-      #   shell: bash
+      - name: Export github access token
+        run: echo "::set-env name=GITHUB_PAT_CALLFORCEBOT::$CMD_FETCH_GITHUB_PAT_CALLFORCEBOT"
+        shell: bash
 
       - name: Update organization labels
         uses: ./.github/actions/org-labels
@@ -45,5 +45,5 @@ jobs:
         with:
           org: callforce
           repo: .github
-          token: ${{ secrets.GITHUB_PAT_CALLFORCEBOT }} 
+          token: ${{ env.GITHUB_PAT_CALLFORCEBOT }} 
           labelsPath: config/org-labels.json
