@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "build": "ncc build src",
-    "format": "prettier --write \"**/*.js\"",
+    "format": "prettier --check \"**/*.js\"",
     "lint": "eslint src/*",
     "start": "nodemon --exec 'prettier --write \"**/*.js\" && eslint src/* && ncc build src/index.js'",
     "test": "jest --passWithNoTests"
