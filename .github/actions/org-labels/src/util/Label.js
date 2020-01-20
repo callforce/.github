@@ -1,4 +1,3 @@
-
 /**
  * Creates interface to manage github issue label
  * @class
@@ -19,16 +18,14 @@ class Label {
    * @param {String} color - Label color; six-character hex code
    * @param {String} description - Label description
    */
-  async create({
-    owner, repo, name, color, description,
-  }) {
+  async create({ owner, repo, name, color, description }) {
     try {
       await this.octokit.issues.createLabel({
         owner,
         repo,
         name,
         color,
-        description,
+        description
       });
       console.info(`Created ${name} label in ${repo}`);
       return name;
@@ -69,9 +66,7 @@ class Label {
    * @param {String} color - Label color; six-character hex code
    * @param {String} description - Label description
    */
-  async update({
-    owner, repo, name, color, description,
-  }) {
+  async update({ owner, repo, name, color, description }) {
     try {
       await this.octokit.issues.updateLabel({
         owner,
@@ -80,7 +75,7 @@ class Label {
         current_name: name,
         new_name: name,
         color,
-        description,
+        description
       });
       console.info(`Updated ${name} label in ${repo}`);
       return name;
