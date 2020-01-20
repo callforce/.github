@@ -5,8 +5,8 @@ on:
   push:
     branches:
       - master
-    # paths:
-    #   - 'config/org-labels.json'
+    paths:
+      - 'config/org-labels.json'
 
 jobs:
   update:
