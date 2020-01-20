@@ -2,10 +2,11 @@
   "name": "org-labels",
   "version": "0.1.0",
   "description": "Maintain repository labels across a GitHub organization from GitHub actions",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "build": "ncc build index.js",
-    "start": "nodemon --exec ncc build index.js"
+    "build": "ncc build src",
+    "lint": "eslint src/*",
+    "start": "nodemon --exec 'eslint src/* && ncc build src/index.js'"
   },
   "keywords": [],
   "author": "@callforce",
@@ -20,10 +21,17 @@
   },
   "devDependencies": {
     "@zeit/ncc": "^0.21.0",
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.20.0",
     "nodemon": "^2.0.2"
   },
   "nodemonConfig": {
-    "ignore": ["dist/*","README.md",".gitignore"],
+    "ignore": [
+      "dist/*",
+      "README.md",
+      ".gitignore"
+    ],
     "delay": 1500
   }
 }
