@@ -1,8 +1,8 @@
 ---
-name: Feature Template
-about: Submit a request for a new feature or enhancement
+name: Maintenence
+about: Submit a request for configuration or setup changes
 title: ''
-labels: enhancement
+labels: maintenence
 assignees: ''
 ---
 
