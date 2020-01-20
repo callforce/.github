@@ -45,6 +45,7 @@ class Label {
           owner, 
           repo, 
           name,
+          current_name: name,
           new_name: name,  
           color, 
           description 
