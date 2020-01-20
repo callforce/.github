@@ -24872,11 +24872,26 @@ module.exports = require("path");
 /***/ (function(module) {
 
 
+/**
+ * Creates interface to manage github issue label
+ * @class
+ */
 class Label {
   constructor({ octokit }) {
     this.octokit = octokit
   }
 
+  /**
+   * @method 
+   * @name create 
+   *    creates a github repo label
+   * 
+   * @param {String} owner - Name of github org
+   * @param {String} repo - Org repo name
+   * @param {String} name - Label name
+   * @param {String} color - Label color; six-character hex code
+   * @param {String} description - Label description
+   */
   create({ owner, repo, name, color, description }) {
     return new Promise(async (resolve, reject) => {
       try {
@@ -24896,6 +24911,15 @@ class Label {
     })
   }
 
+  /**
+   * @method 
+   * @name delete 
+   *    deletes a github repo label
+   * 
+   * @param {String} owner - Name of github org
+   * @param {String} repo - Org repo name
+   * @param {String} name - Label name
+   */
   delete({ owner, repo, name }) {
     return new Promise(async (resolve, reject) => {
       try {
@@ -24909,6 +24933,17 @@ class Label {
     })
   }
 
+  /**
+   * @method 
+   * @name update 
+   *    creates a github repo label
+   * 
+   * @param {String} owner - Name of github org
+   * @param {String} repo - Org repo name
+   * @param {String} name - Label name
+   * @param {String} color - Label color; six-character hex code
+   * @param {String} description - Label description
+   */
   update({ owner, repo, name, color, description }) {
     return new Promise(async (resolve, reject) => {
       try {
