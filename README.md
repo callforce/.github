@@ -1,3 +1,4 @@
+![](https://github.com/callforce/.github/workflows/Organization%20Labels/badge.svg)
 
 # CallForce Default Metadata
 
