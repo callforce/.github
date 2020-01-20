@@ -26,9 +26,6 @@ jobs:
         with:
           node-version: 12
 
-      - name: navigate to aciton directory
-        run: cd .github/actions/${{ matrix.action }}
-
       - name: cache node modules
         uses: actions/cache@v1
         with:
@@ -37,13 +34,16 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
-            ${{ runner.os }}-
+            ${{ runner.os }}-   
 
       - name: install dependencies
         run: npm install
+        working-directory: .github/actions/${{ matrix.action }}
 
       - name: build action
         run: npm run build
+        working-directory: .github/actions/${{ matrix.action }}
 
       - name: lint action
         run: npm run lint
+        working-directory: .github/actions/${{ matrix.action }}
