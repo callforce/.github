@@ -4,7 +4,8 @@
   "description": "Maintain repository labels across a GitHub organization from GitHub actions",
   "main": "index.js",
   "scripts": {
-    "build": "ncc build index.js"
+    "build": "ncc build index.js",
+    "start": "nodemon --exec ncc build index.js"
   },
   "keywords": [],
   "author": "@callforce",
@@ -18,6 +19,11 @@
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@zeit/ncc": "^0.21.0"
+    "@zeit/ncc": "^0.21.0",
+    "nodemon": "^2.0.2"
+  },
+  "nodemonConfig": {
+    "ignore": ["dist/*","README.md",".gitignore"],
+    "delay": 1500
   }
 }
