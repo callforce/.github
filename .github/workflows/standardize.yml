@@ -5,7 +5,7 @@ on:
     branches:
       - master
     paths:
-      - config/**
+      - 'config/**'
 
 jobs:
   labels:

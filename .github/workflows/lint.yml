@@ -7,7 +7,7 @@ on:
       - reopened
       - synchronize
     paths:
-      - .github/actions/**
+      - '.github/actions/**'
 
 jobs:
   actions:
