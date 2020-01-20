@@ -1314,12 +1314,13 @@ const Oktokit = __webpack_require__(0)
 
 const PROTECTED_LABELS = ['Epic']
 
-const updateRepoLabels = (octokit, org, repo, labels, token) => {
+const updateRepoLabels = (octokit, org, repo, labels) => {
   return new Promise(async (resolve, reject) => {
+    const token = core.getInput('token', { required: true });
     let promises = [];
 
     try {
-      const orgLabel = new Label({ octokit })
+      const orgLabel = new Label({ octokit, token })
       const { data: repoLabels } = await octokit.issues.listLabelsForRepo({
         owner: org,
         repo: repo.name
@@ -1374,13 +1375,13 @@ const updateRepoLabels = (octokit, org, repo, labels, token) => {
   })
 }
 
-const standardizeLabels = (octokit, org, repos, labels, token) => {
+const standardizeLabels = (octokit, org, repos, labels) => {
   return new Promise(async (resolve, reject) => {
     try {
       let promises = []
 
       repos.forEach(repo => {
-        promises.push(updateRepoLabels(octokit, org, repo, labels, token))
+        promises.push(updateRepoLabels(octokit, org, repo, labels))
       })
 
       let r = await Promise.all(promises)
@@ -1414,9 +1415,8 @@ const main = async () => {
     const labels = JSON.parse(buff.toString('utf-8'))
     
     // standardize org labels
-    await standardizeLabels(octokit, org, repos, labels, token)
+    await standardizeLabels(octokit, org, repos, labels)
   } catch (err) {
-    // console.log(err)
     core.setFailed(err.message)
   }
 }
@@ -2631,6 +2631,7 @@ const axios = __webpack_require__(53)
 class Label {
   constructor({ octokit }) {
     this.octokit = octokit
+    this.token = token
     this.githubBaseUrl = 'https://api.github.com'
   }
 
@@ -2648,7 +2649,6 @@ class Label {
         resolve({ name })
       } catch (err) {
         console.log(`Failed to create ${name} label in ${repo}`)
-        console.log(err)
         reject(err)
       }
     })
@@ -2662,22 +2662,19 @@ class Label {
         resolve({ name })
       } catch (err) {
         console.log(`Failed to delete ${name} label in ${repo}`)
-        console.log(err)
         reject(err)
       }
     })
   }
 
-  update({ owner, repo, name, color, description, token }) {
+  update({ owner, repo, name, color, description }) {
     return new Promise(async (resolve, reject) => {
       try {
         const url = `${this.githubBaseUrl}/repos/${owner}/${repo}/labels/${name}`
         await axios({
           method: 'patch',
           url, 
-          headers: {
-            'Authorization': `Bearer ${token}`
-          },
+          headers: { 'Authorization': `Bearer ${this.token}` },
           data: {
             name,
             new_name: name,  
@@ -2685,20 +2682,10 @@ class Label {
             description 
           }
         })
-        // await this.octokit.issues.updateLabel({ 
-        //   owner, 
-        //   repo, 
-        //   name,
-        //   current_name: name,
-        //   new_name: name,  
-        //   color, 
-        //   description 
-        // })
         console.log(`Updated ${name} label in ${repo}`)
         resolve({ name })
       } catch (err) {
         console.log(`Failed to update ${name} label in ${repo}`)
-        // console.log(err)
         reject(err)
       }
     })

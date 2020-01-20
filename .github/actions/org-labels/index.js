@@ -6,12 +6,13 @@ const Oktokit = require('@octokit/rest')
 
 const PROTECTED_LABELS = ['Epic']
 
-const updateRepoLabels = (octokit, org, repo, labels, token) => {
+const updateRepoLabels = (octokit, org, repo, labels) => {
   return new Promise(async (resolve, reject) => {
+    const token = core.getInput('token', { required: true });
     let promises = [];
 
     try {
-      const orgLabel = new Label({ octokit })
+      const orgLabel = new Label({ octokit, token })
       const { data: repoLabels } = await octokit.issues.listLabelsForRepo({
         owner: org,
         repo: repo.name
@@ -66,13 +67,13 @@ const updateRepoLabels = (octokit, org, repo, labels, token) => {
   })
 }
 
-const standardizeLabels = (octokit, org, repos, labels, token) => {
+const standardizeLabels = (octokit, org, repos, labels) => {
   return new Promise(async (resolve, reject) => {
     try {
       let promises = []
 
       repos.forEach(repo => {
-        promises.push(updateRepoLabels(octokit, org, repo, labels, token))
+        promises.push(updateRepoLabels(octokit, org, repo, labels))
       })
 
       let r = await Promise.all(promises)
@@ -106,9 +107,8 @@ const main = async () => {
     const labels = JSON.parse(buff.toString('utf-8'))
     
     // standardize org labels
-    await standardizeLabels(octokit, org, repos, labels, token)
+    await standardizeLabels(octokit, org, repos, labels)
   } catch (err) {
-    // console.log(err)
     core.setFailed(err.message)
   }
 }
