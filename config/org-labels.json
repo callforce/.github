@@ -15,6 +15,11 @@
     "description": "Feature requests"
   },
   {
+    "name": "maintenance",
+    "color": "f7832e",
+    "description": "Configuration or setup"
+  },
+  {
     "name": "documentation",
     "color": "0075ca",
     "description": "Pull requests that include documentaion updates"
@@ -28,6 +33,11 @@
     "name": "fix",
     "color": "fcc2c5",
     "description": "Pull requests that include bug fixes"
+  },
+  {
+    "name": "chore",
+    "color": "3a2716",
+    "description": "Pull requests that include configuration or setup"
   },
   {
     "name": "needs-review",

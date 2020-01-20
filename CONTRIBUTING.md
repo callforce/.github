@@ -33,7 +33,7 @@ At times, we rely on a branch's name to automatically take action on a pull requ
 `<GITHUB_USERNAME>/<CHANGE_TYPE>/<ASSOCIATED_GITHUB_ISSUE_NUMBER>`
 
 * `GITHUB_USERNAME`: Include your GitHub username in branch name
-* `CHANGE_TYPE`: Include the type of change the branch will include; options are `feature`, `fix`, or `documentation`
+* `CHANGE_TYPE`: Include the type of change the branch will include; options are `feature`, `fix`, `chore`, or `documentation`
 * `ASSOCIATED_GITHUB_ISSUE_NUMBER`: If applicable, include GitHub issue number associated with the changes
 
 Here are some examples for branch names:
@@ -41,6 +41,7 @@ Here are some examples for branch names:
 * `mishamilovidov/feature/132`
 * `connerludlow/fix/32`
 * `mishamilovidov/documentation`
+* `connerludlow/chore/54`
 
 ### 💪 Pull Requests
 
@@ -77,6 +78,7 @@ This section lists the labels we use to help us track and manage issues and pull
 |----------|-----------|
 | `enhancement` | Feature requests |
 | `bug` | Confirmed bugs or reports that are very likely to be bugs |
+| `maintenance` | Configuration or setup |
 | `question` | Questions more than bug reports or feature requests (e.g. how do I do X) |
 
 #### Type of Pull Request
@@ -85,6 +87,7 @@ This section lists the labels we use to help us track and manage issues and pull
 |----------|-----------|
 | `feature` | Pull requests that include new features or enhancements |
 | `fix` | Pull requests that include bug fixes |
+| `chore` | Pull requests that include configuration or setup |
 | `documentation` | Pull requests that include documentaion updates |
 
 #### Pull Request State

@@ -1,45 +1,45 @@
-name: Organization Labels
+name: standardize
 
 on:
   push:
     branches:
       - master
     paths:
-      - config/org-labels.json
+      - 'config/**'
 
 jobs:
-  update:
-    name: Update labels
+  labels:
+    name: labels
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: checkout repository
         uses: actions/checkout@v2
 
-      - name: Setup gcloud for secret manager
+      - name: setup gcloud for secret manager
         uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
         with:
           version: '276.0.0'
           service_account_key: ${{ secrets.GCP_SA_SECRETMANAGER_KEY_PROD }}
       
-      - name: Setup gcloud beta components
+      - name: setup gcloud beta components
         run: gcloud components install beta
         shell: bash
 
-      - name: Export command to fetch github access token
+      - name: export command to fetch github access token
         run: |
           echo "::set-env name=CMD_FETCH_GITHUB_PAT_CALLFORCEBOT::gcloud beta secrets versions access latest --secret=GITHUB_PAT_CALLFORCEBOT --quiet --project=callforce-prod"
         shell: bash
 
-      - name: Mask github access token
+      - name: mask github access token
         run: echo "::add-mask::$(eval "$CMD_FETCH_GITHUB_PAT_CALLFORCEBOT")"
         shell: bash
 
-      - name: Export github access token
+      - name: export github access token
         run: echo "::set-env name=GITHUB_PAT_CALLFORCEBOT::$(eval "$CMD_FETCH_GITHUB_PAT_CALLFORCEBOT")"
         shell: bash
 
-      - name: Update organization labels
-        uses: ./.github/actions/org-labels
+      - name: standardize organization labels
+        uses: ./.github/actions/organization-labels-action
         id: org-labels
         with:
           org: callforce
