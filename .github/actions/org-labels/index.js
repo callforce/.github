@@ -2,16 +2,15 @@ const _ = require('lodash')
 const core = require('@actions/core')
 const github = require('@actions/core')
 const Label = require('./util/Label')
-const Oktokit = require('@octokit/rest').plugin(
-  require('@octokit/plugin-throttling'),
-  require('@octokit/plugin-retry')
-)
+const Oktokit = require('@octokit/rest')
+const { retry } = require('@octokit/plugin-retry')
+const { throttling } = require('@octokit/plugin-throttling')
 
 const PROTECTED_LABELS = ['Epic']
 
 const updateRepoLabels = (octokit, org, repo, labels) => {
   return new Promise(async (resolve, reject) => {
-    let promises = [];
+    let promises = []
 
     try {
       const orgLabel = new Label({ octokit })
@@ -40,7 +39,7 @@ const updateRepoLabels = (octokit, org, repo, labels) => {
           const { name, color, description } = _.mapKeys(
             labels, 
             'name'
-          )[label.name];
+          )[label.name]
 
           promises.push(
             orgLabel.update({ owner: org, repo: repo.name, name, color, description })
@@ -50,7 +49,7 @@ const updateRepoLabels = (octokit, org, repo, labels) => {
 
       // determine labels to create
       labels.forEach(label => {
-        const { name, color, description } = label;
+        const { name, color, description } = label
 
         if (!repoLabelNames.includes(label.name)) {
           promises.push(
@@ -90,29 +89,30 @@ const standardizeLabels = (octokit, org, repos, labels) => {
 
 const main = async () => {
   try {
-    const org = core.getInput('org', { required: true });
-    const repo = core.getInput('repo', { required: true });
-    const token = core.getInput('token', { required: true });
-    const labelsPath = core.getInput('labelsPath', { required: true });
-    const octokit = new Oktokit({ 
+    const org = core.getInput('org', { required: true })
+    const repo = core.getInput('repo', { required: true })
+    const token = core.getInput('token', { required: true })
+    const labelsPath = core.getInput('labelsPath', { required: true })
+    const ActionOctokit = Oktokit.plugin(throttling).plugin(retry)
+    const octokit = new ActionOctokit({ 
       auth: token,
       throttle: {
         onRateLimit: (retryAfter, options) => {
           octokit.log.warn(
             `Request quota exhausted for request ${options.method} ${options.url}`
-          );
+          )
     
           if (options.request.retryCount === 0) {
             // only retries once
-            console.log(`Retrying after ${retryAfter} seconds!`);
-            return true;
+            console.log(`Retrying after ${retryAfter} seconds!`)
+            return true
           }
         },
         onAbuseLimit: (retryAfter, options) => {
           // does not retry, only logs a warning
           octokit.log.warn(
             `Abuse detected for request ${options.method} ${options.url}`
-          );
+          )
         }
       }
     })
