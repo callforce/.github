@@ -108,7 +108,7 @@ const main = async () => {
     // standardize org labels
     await standardizeLabels(octokit, org, repos, labels, token)
   } catch (err) {
-    console.log(err)
+    // console.log(err)
     core.setFailed(err.message)
   }
 }
