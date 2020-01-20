@@ -9,10 +9,6 @@ jobs:
   pull_requests:
     name: pull requests
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        action:
-          - organization-labels-action
     steps:
       - name: checkout repository
         uses: actions/checkout@v2
