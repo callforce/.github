@@ -2,17 +2,19 @@ const _ = require('lodash')
 const core = require('@actions/core')
 const github = require('@actions/core')
 const Label = require('./util/Label')
-const Oktokit = require('@octokit/rest')
+const Oktokit = require('@octokit/rest').plugin(
+  require('@octokit/plugin-throttling'),
+  require('@octokit/plugin-retry')
+)
 
 const PROTECTED_LABELS = ['Epic']
 
 const updateRepoLabels = (octokit, org, repo, labels) => {
   return new Promise(async (resolve, reject) => {
-    const token = core.getInput('token', { required: true });
     let promises = [];
 
     try {
-      const orgLabel = new Label({ octokit, token })
+      const orgLabel = new Label({ octokit })
       const { data: repoLabels } = await octokit.issues.listLabelsForRepo({
         owner: org,
         repo: repo.name
@@ -92,7 +94,28 @@ const main = async () => {
     const repo = core.getInput('repo', { required: true });
     const token = core.getInput('token', { required: true });
     const labelsPath = core.getInput('labelsPath', { required: true });
-    const octokit = Oktokit({ auth: token })
+    const octokit = new Oktokit({ 
+      auth: token,
+      throttle: {
+        onRateLimit: (retryAfter, options) => {
+          octokit.log.warn(
+            `Request quota exhausted for request ${options.method} ${options.url}`
+          );
+    
+          if (options.request.retryCount === 0) {
+            // only retries once
+            console.log(`Retrying after ${retryAfter} seconds!`);
+            return true;
+          }
+        },
+        onAbuseLimit: (retryAfter, options) => {
+          // does not retry, only logs a warning
+          octokit.log.warn(
+            `Abuse detected for request ${options.method} ${options.url}`
+          );
+        }
+      }
+    })
 
     // get org repos
     const { data: repos } = await octokit.repos.listForOrg({ org })

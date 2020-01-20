@@ -1,10 +1,7 @@
-const axios = require('axios')
 
 class Label {
-  constructor({ octokit, token }) {
+  constructor({ octokit }) {
     this.octokit = octokit
-    this.token = token
-    this.githubBaseUrl = 'https://api.github.com'
   }
 
   create({ owner, repo, name, color, description }) {
@@ -42,17 +39,14 @@ class Label {
   update({ owner, repo, name, color, description }) {
     return new Promise(async (resolve, reject) => {
       try {
-        const url = `${this.githubBaseUrl}/repos/${owner}/${repo}/labels/${name}`
-        await axios({
-          method: 'patch',
-          url, 
-          headers: { 'Authorization': `Bearer ${this.token}` },
-          data: {
-            name,
-            new_name: name,  
-            color, 
-            description 
-          }
+        await this.octokit.issues.updateLabel({
+          owner,
+          repo,
+          name,
+          current_name: name,
+          new_name: name,
+          color,
+          description
         })
         console.log(`Updated ${name} label in ${repo}`)
         resolve({ name })
