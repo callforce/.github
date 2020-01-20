@@ -1,15 +1,15 @@
-name: standardize labels
+name: standardize
 
 on:
   push:
     branches:
       - master
     paths:
-      - config/org-labels.json
+      - config/**
 
 jobs:
-  standardize:
-    name: standardize labels
+  labels:
+    name: labels
     runs-on: ubuntu-latest
     steps:
       - name: checkout repository
@@ -38,7 +38,7 @@ jobs:
         run: echo "::set-env name=GITHUB_PAT_CALLFORCEBOT::$(eval "$CMD_FETCH_GITHUB_PAT_CALLFORCEBOT")"
         shell: bash
 
-      - name: update organization labels
+      - name: standardize organization labels
         uses: ./.github/actions/organization-labels-action
         id: org-labels
         with:
