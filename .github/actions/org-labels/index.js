@@ -1,13 +1,30 @@
 const _ = require('lodash')
 const core = require('@actions/core')
-const github = require('@actions/core')
 const Label = require('./util/Label')
 const Oktokit = require('@octokit/rest')
 const { retry } = require('@octokit/plugin-retry')
 const { throttling } = require('@octokit/plugin-throttling')
 
+/** 
+ * @constant
+ * @type {Object[]}
+ * @default
+*/
 const PROTECTED_LABELS = ['Epic']
 
+/**
+ * @function 
+ * @name updateRepoLabels 
+ *    updates repo labels using org labels config
+ *      labels not in org label config are deleted
+ *      labels missing in repo are created
+ *      labels included in org label config are updated
+ * 
+ * @param {Octokit} octokit - Authenticated instance of Octokit
+ * @param {String} org - Name of github org
+ * @param {Object[]} repo - Org repo data
+ * @param {Object[]} labels - Collection of org labels from org label config
+ */
 const updateRepoLabels = (octokit, org, repo, labels) => {
   return new Promise(async (resolve, reject) => {
     let promises = []
@@ -21,7 +38,6 @@ const updateRepoLabels = (octokit, org, repo, labels) => {
       const labelNames = _.map(labels, 'name')
       const repoLabelNames = _.map(repoLabels, 'name')
 
-      // determine labels to update & delete
       repoLabels.forEach(label => {
         if (
           !labelNames.includes(label.name) && 
@@ -47,7 +63,6 @@ const updateRepoLabels = (octokit, org, repo, labels) => {
         }
       })
 
-      // determine labels to create
       labels.forEach(label => {
         const { name, color, description } = label
 
@@ -62,12 +77,21 @@ const updateRepoLabels = (octokit, org, repo, labels) => {
 
       resolve(r)
     } catch (err) {
-      console.log(err)
       reject(err)
     }
   })
 }
 
+/**
+ * @function 
+ * @name standardizeLabels 
+ *    creates and executes array of promises to update labels in org repos
+ * 
+ * @param {Octokit} octokit - Authenticated instance of Octokit
+ * @param {String} org - Name of github org
+ * @param {Object[]} repos - Collection of org repo data
+ * @param {Object[]} labels - Collection of org labels from org label config
+ */
 const standardizeLabels = (octokit, org, repos, labels) => {
   return new Promise(async (resolve, reject) => {
     try {
@@ -81,12 +105,17 @@ const standardizeLabels = (octokit, org, repos, labels) => {
       
       resolve(r)
     } catch (err) {
-      console.log(err)
       reject(err)
     }
   })
 }
 
+/**
+ * @function 
+ * @name main
+ *    gathers action inputs, github org repos, and org labels config file and 
+ *    then standardizes labels in repos across the org
+ */
 const main = async () => {
   try {
     const org = core.getInput('org', { required: true })
@@ -103,24 +132,18 @@ const main = async () => {
           )
     
           if (options.request.retryCount === 0) {
-            // only retries once
             console.log(`Retrying after ${retryAfter} seconds!`)
             return true
           }
         },
         onAbuseLimit: (retryAfter, options) => {
-          // does not retry, only logs a warning
           octokit.log.warn(
             `Abuse detected for request ${options.method} ${options.url}`
           )
         }
       }
     })
-
-    // get org repos
     const { data: repos } = await octokit.repos.listForOrg({ org })
-
-    // get labels config
     const { data: labelsConfig } = await octokit.repos.getContents({
       owner: org,
       repo,
@@ -129,7 +152,6 @@ const main = async () => {
     const buff = new Buffer.from(labelsConfig.content, 'base64')
     const labels = JSON.parse(buff.toString('utf-8'))
     
-    // standardize org labels
     await standardizeLabels(octokit, org, repos, labels)
   } catch (err) {
     core.setFailed(err.message)
