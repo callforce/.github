@@ -70,7 +70,7 @@ class Label {
         resolve({ name })
       } catch (err) {
         console.log(`Failed to update ${name} label in ${repo}`)
-        console.log(err)
+        // console.log(err)
         reject(err)
       }
     })
