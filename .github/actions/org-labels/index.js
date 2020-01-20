@@ -6,7 +6,7 @@ const Oktokit = require('@octokit/rest')
 
 const PROTECTED_LABELS = ['Epic']
 
-const updateRepoLabels = (octokit, org, repo, labels) => {
+const updateRepoLabels = (octokit, org, repo, labels, token) => {
   return new Promise(async (resolve, reject) => {
     let promises = [];
 
@@ -40,7 +40,7 @@ const updateRepoLabels = (octokit, org, repo, labels) => {
           )[label.name];
 
           promises.push(
-            orgLabel.update({ owner: org, repo: repo.name, name, color, description })
+            orgLabel.update({ owner: org, repo: repo.name, name, color, description, token })
           )
         }
       })
@@ -66,13 +66,13 @@ const updateRepoLabels = (octokit, org, repo, labels) => {
   })
 }
 
-const standardizeLabels = (octokit, org, repos, labels) => {
+const standardizeLabels = (octokit, org, repos, labels, token) => {
   return new Promise(async (resolve, reject) => {
     try {
       let promises = []
 
       repos.forEach(repo => {
-        promises.push(updateRepoLabels(octokit, org, repo, labels))
+        promises.push(updateRepoLabels(octokit, org, repo, labels, token))
       })
 
       let r = await Promise.all(promises)
@@ -87,10 +87,14 @@ const standardizeLabels = (octokit, org, repos, labels) => {
 
 const main = async () => {
   try {
-    const org = core.getInput('org', { required: true });
-    const repo = core.getInput('repo', { required: true });
-    const token = core.setSecret('token');
-    const labelsPath = core.getInput('labelsPath', { required: true });
+    // const org = core.getInput('org', { required: true });
+    // const repo = core.getInput('repo', { required: true });
+    // const token = core.setSecret('token');
+    // const labelsPath = core.getInput('labelsPath', { required: true });
+    const org = 'callforce'
+    const repo = '.github'
+    const token = '5d8875a1ec6f0d05a5539f25d5ccb0beb7372da2'
+    const labelsPath = 'config/org-labels.json'
     const octokit = Oktokit({ auth: token })
 
     // get org repos
@@ -106,7 +110,7 @@ const main = async () => {
     const labels = JSON.parse(buff.toString('utf-8'))
     
     // standardize org labels
-    await standardizeLabels(octokit, org, repos, labels)
+    await standardizeLabels(octokit, org, repos, labels, token)
   } catch (err) {
     console.log(err)
     core.setFailed(err.message)
