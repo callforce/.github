@@ -87,14 +87,10 @@ const standardizeLabels = (octokit, org, repos, labels, token) => {
 
 const main = async () => {
   try {
-    // const org = core.getInput('org', { required: true });
-    // const repo = core.getInput('repo', { required: true });
-    // const token = core.setSecret('token');
-    // const labelsPath = core.getInput('labelsPath', { required: true });
-    const org = 'callforce'
-    const repo = '.github'
-    const token = '5d8875a1ec6f0d05a5539f25d5ccb0beb7372da2'
-    const labelsPath = 'config/org-labels.json'
+    const org = core.getInput('org', { required: true });
+    const repo = core.getInput('repo', { required: true });
+    const token = core.setSecret('token');
+    const labelsPath = core.getInput('labelsPath', { required: true });
     const octokit = Oktokit({ auth: token })
 
     // get org repos
