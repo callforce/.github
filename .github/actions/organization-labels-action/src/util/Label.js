@@ -1,3 +1,5 @@
+const core = require('@actions/core');
+
 /**
  * Creates interface to manage github issue label
  * @class
@@ -27,10 +29,10 @@ class Label {
         color,
         description
       });
-      console.info(`Created ${name} label in ${repo}`);
+      core.info(`Created ${name} label in ${repo}`);
       return name;
     } catch (err) {
-      console.info(`Failed to create ${name} label in ${repo}`);
+      core.info(`Failed to create ${name} label in ${repo}`);
       return err;
     }
   }
@@ -47,10 +49,10 @@ class Label {
   async delete({ owner, repo, name }) {
     try {
       await this.octokit.issues.deleteLabel({ owner, repo, name });
-      console.info(`Deleted ${name} label in ${repo}`);
+      core.info(`Deleted ${name} label in ${repo}`);
       return name;
     } catch (err) {
-      console.info(`Failed to delete ${name} label in ${repo}`);
+      core.info(`Failed to delete ${name} label in ${repo}`);
       return err;
     }
   }
@@ -77,10 +79,10 @@ class Label {
         color,
         description
       });
-      console.info(`Updated ${name} label in ${repo}`);
+      core.info(`Updated ${name} label in ${repo}`);
       return name;
     } catch (err) {
-      console.info(`Failed to update ${name} label in ${repo}`);
+      core.info(`Failed to update ${name} label in ${repo}`);
       return err;
     }
   }

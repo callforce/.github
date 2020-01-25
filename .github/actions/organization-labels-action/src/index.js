@@ -139,7 +139,7 @@ async function main() {
           );
 
           if (options.request.retryCount === 0) {
-            console.log(`Retrying after ${retryAfter} seconds!`);
+            core.info(`Retrying after ${retryAfter} seconds!`);
             return true;
           }
 
