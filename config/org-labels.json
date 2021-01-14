@@ -2,12 +2,12 @@
   {
     "name": "high priority",
     "color": "#D95A36",
-    "description": "Only to be used with bugs or security - marks stories that need to be completed as soon as possible"
+    "description": "Only to be used with bugs, security, or maintenance - marks stories that need to be completed as soon as possible"
   },
   {
     "name": "low priority",
     "color": "#C5DEF5",
-    "description": "Only to be used with bugs or security - marks stories that are known issues, but are not time sensitive"
+    "description": "Only to be used with bugs, security, or maintenance - marks stories that are known issues, but are not time sensitive"
   },
   {
     "name": "security",
