@@ -1,5 +1,20 @@
 [
   {
+    "name": "high priority",
+    "color": "#D95A36",
+    "description": "Only to be used with bugs or security - marks stories that need to be completed as soon as possible"
+  },
+  {
+    "name": "low priority",
+    "color": "#C5DEF5",
+    "description": "Only to be used with bugs or security - marks stories that are known issues, but are not time sensitive"
+  },
+  {
+    "name": "security",
+    "color": "#FE3D56",
+    "description": "Issues that fix a security issue or vulnerability"
+  },
+  {
     "name": "bug",
     "color": "d73a4a",
     "description": "Confirmed bugs or reports that are very likely to be bugs"
