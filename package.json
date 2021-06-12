@@ -1,0 +1,31 @@
+{
+  "name": "@callforce/.github",
+  "version": "1.0.0",
+  "author": "@callforce",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "lint": "echo \"(placeholder) lint\"",
+    "lint:commits": "commitlint --from=HEAD~1 --verbose",
+    "release": "echo \"(placeholder) release\"",
+    "test": "echo \"(placeholder) test\"",
+    "test:ci": "echo \"(placeholder) test:ci\""
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^12.1.1",
+    "@commitlint/config-conventional": "^12.1.1",
+    "github-release-notes": "0.17.1",
+    "husky": "^4",
+    "standard-version": "^9.1.1"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  }
+}
