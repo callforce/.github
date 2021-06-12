@@ -2,4 +2,4 @@
 
 # callforce/.github
 
-Metadata fro @callforce organization
+Metadata for @callforce organization
