@@ -6,14 +6,14 @@ labels: question
 assignees: ''
 ---
 
-### ❓Question
+### Question
 
 *A clear and concise description of what the question is.*
 
-### 📸 Screenshots*
+### Screenshots*
 
 *If applicable, add screenshots to help explain your question.*
 
-### 🤔 Additional Context
+### Additional Context
 
 *If applicable, add any other context about the question here.*

@@ -1,18 +1,18 @@
 
-### 🏗 Changes
+### Changes
 
 * 
 
-### 📋 Testing Steps
+### Testing Steps
 
 1. Go to '...'
 2. Verify that '...'
 3. Click on '...' 
 
-### :octocat: Related GitHub Issues
+### Related GitHub Issues
 
 * 
 
-### 📝 Notes
+### Notes
 
 *If applicable, add additional notes for here.*
