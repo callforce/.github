@@ -7,7 +7,7 @@
   "scripts": {
     "lint": "echo \"(placeholder) lint\"",
     "lint:commits": "commitlint --from=HEAD~1 --verbose",
-    "release": "echo \"(placeholder) release\"",
+    "release": "chmod +x ./.github/bin/release.sh && ./.github/bin/release.sh",
     "test": "echo \"(placeholder) test\"",
     "test:ci": "echo \"(placeholder) test:ci\""
   },

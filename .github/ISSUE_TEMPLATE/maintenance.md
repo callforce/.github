@@ -6,17 +6,17 @@ labels: maintenance
 assignees: ''
 ---
 
-### ✨ Story 
+### Story 
 
 As a <USER> I want to <GOAL> so that <BENEFIT>.
 
-### 📋 Acceptance Criteria
+### Acceptance Criteria
 
 *Add conditions that are used to determine if work has been completed.*
 
-### ✅ Definition of Done
+### Definition of Done
 
 * Code reviewed
 * Acceptance criteria met
 * Functional tests passed
-* Changes merged into the `master` branch
+* Changes merged into the default branch
