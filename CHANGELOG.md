@@ -1,4 +1,22 @@
 # Changelog
+## [1.1.0](https://github.com/callforce/.github/compare/v1.0.0...v1.1.0) (2021-06-12)
+
+
+### Features
+
+* **ci:** add pr workflow ([ba98480](https://github.com/callforce/.github/commits/ba984803d42ae25b2ffd9ebd5d9f71311f25445d))
+* **ci:** add release workflow ([695423f](https://github.com/callforce/.github/commits/695423fda06bca050180c9645073e6e0c2259e92))
+
+
+### Maintenance
+
+* add package defintion and config ([1255cd1](https://github.com/callforce/.github/commits/1255cd11180568bc33b74750ea129b55b7e61fc1))
+* merge pull request [#35](https://github.com/callforce/.github/issues/35) ([b457842](https://github.com/callforce/.github/commits/b457842801d3abd58753e2ea388b4e2708549686))
+* update code of coduct and contrib ([d201698](https://github.com/callforce/.github/commits/d2016988208315b1832306f7494a0838f1b61834))
+* update github issue and pr templates ([f722af7](https://github.com/callforce/.github/commits/f722af78f6bfdfe9751936eae02d244cd447f390))
+* update version badge ([0b86a9a](https://github.com/callforce/.github/commits/0b86a9a547b6899a7dd24802b681b106c9e033a3))
+* update version in readme to v1.1.0 ([dbc7d3b](https://github.com/callforce/.github/commits/dbc7d3b81179bf52fc835ca3d6db188b1a77d093))
+
 ## 1.0.0 (2021-06-12)
 
 
