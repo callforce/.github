@@ -3,3 +3,5 @@
 # callforce/.github
 
 Metadata for @callforce organization
+
+[![Version](https://img.shields.io/badge/version-v1.0.0-1C80C0)](https://github.com/fitmarkets/.github/releases/v1.0.0)
