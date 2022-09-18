@@ -2,6 +2,6 @@
 
 # callforce/.github
 
-Metadata for @callforce organization
+Metadata for the @callforce organization
 
-[![Version](https://img.shields.io/badge/version-v1.1.0-1C80C0)](https://github.com/callforce/.github/releases/v1.1.0)
+![Version](https://img.shields.io/static/v1?label=version&message=1.1.0&color=1C80C0) <!-- x-release-please-version -->
