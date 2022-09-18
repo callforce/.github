@@ -1,4 +1,12 @@
 # Changelog
+## [1.1.1](https://github.com/callforce/.github/compare/v1.1.0...v1.1.1) (2022-09-18)
+
+
+### Bug Fixes
+
+* rm toc and format tables ([ca22ab6](https://github.com/callforce/.github/commit/ca22ab6bda89125125ea4e08ad0b164c858b7da1))
+* update code of conduct title ([ea51556](https://github.com/callforce/.github/commit/ea51556a4196d7d5f89bd79f6e02f6ed96d9d8bd))
+
 ## [1.1.0](https://github.com/callforce/.github/compare/v1.0.0...v1.1.0) (2021-06-12)
 
 
