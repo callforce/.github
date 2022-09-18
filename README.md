@@ -4,4 +4,4 @@
 
 Metadata for the @callforce organization
 
-![Version](https://img.shields.io/static/v1?label=version&message=1.1.0&color=1C80C0) <!-- x-release-please-version -->
+![Version](https://img.shields.io/static/v1?label=version&message=1.1.1&color=1C80C0) <!-- x-release-please-version -->
