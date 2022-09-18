@@ -1,31 +1,15 @@
-# Contributing to CallForce <!-- omit in toc -->
+# Contributing
 
 The following is a set of guidelines for contributing to CallForce, which are 
 hosted in the [CallForce Organization][1] on GitHub. These are mostly 
 guidelines, not rules. Use your best judgment, and feel free to propose changes 
 to this document in a pull request.
 
-- [Code of Conduct](#code-of-conduct)
-- [Contribution Guide](#contribution-guide)
-  - [Branches](#branches)
-  - [Pull Requests](#pull-requests)
-  - [Style Guides](#style-guides)
-    - [Git Commit Messages](#git-commit-messages)
-    - [JavaScript Style Guide](#javascript-style-guide)
-    - [Documentation Style Guide](#documentation-style-guide)
-  - [Issue & Pull Request Labels](#issue--pull-request-labels)
-    - [Type of Issue](#type-of-issue)
-    - [Type of Pull Request](#type-of-pull-request)
-    - [Pull Request State](#pull-request-state)
-- [Attribution](#attribution)
-
-
 ## Code of Conduct 
 
 This project, and everyone participating in it, is governed by the CallForce 
 "Code of Conduct". By participating, you are expected to uphold this code. 
 Please report unacceptable behavior to [github@getcallforce.com][2].
-
 
 ## Contribution Guide 
 
@@ -78,30 +62,30 @@ This section lists the labels we use to help us track and manage issues and pull
 
 #### Type of Issue
 
-|Label Name|Description|
-|----------|-----------|
-| `enhancement` | Feature requests |
-| `bug` | Confirmed bugs or reports that are very likely to be bugs |
-| `maintenance` | Configuration or setup |
-| `question` | Questions more than bug reports or feature requests (e.g. how do I do X) |
+| Label Name    | Description                                                              |
+| ------------- | ------------------------------------------------------------------------ |
+| `enhancement` | Feature requests                                                         |
+| `bug`         | Confirmed bugs or reports that are very likely to be bugs                |
+| `maintenance` | Configuration or setup                                                   |
+| `question`    | Questions more than bug reports or feature requests (e.g. how do I do X) |
 
 #### Type of Pull Request
 
-|Label Name|Description|
-|----------|-----------|
-| `feature` | Pull requests that include new features or enhancements |
-| `fix` | Pull requests that include bug fixes |
-| `chore` | Pull requests that include configuration or setup |
-| `documentation` | Pull requests that include documentaion updates |
+| Label Name      | Description                                             |
+| --------------- | ------------------------------------------------------- |
+| `feature`       | Pull requests that include new features or enhancements |
+| `fix`           | Pull requests that include bug fixes                    |
+| `chore`         | Pull requests that include configuration or setup       |
+| `documentation` | Pull requests that include documentaion updates         |
 
 #### Pull Request State
-| Label name | Description
-| --- | --- |
-| `work-in-progress`  | Pull requests which are still being worked on, more changes will follow |
-| `needs-review` | Pull requests which need code review and approval |
-| `under-review` | Pull requests being reviewed |
+| Label name         | Description                                                                             |
+| ------------------ | --------------------------------------------------------------------------------------- |
+| `work-in-progress` | Pull requests which are still being worked on, more changes will follow                 |
+| `needs-review`     | Pull requests which need code review and approval                                       |
+| `under-review`     | Pull requests being reviewed                                                            |
 | `requires-changes` | Pull requests which need to be updated based on review comments and then reviewed again |
-| `needs-testing` | Pull requests which need manual testing |
+| `needs-testing`    | Pull requests which need manual testing                                                 |
 
 
 ## Attribution 
